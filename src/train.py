@@ -141,7 +141,7 @@ class ProjectAgent:
         torch.save(self.model.state_dict(), path)
 
     def load(self):
-        path = os.getcwd() + 'best_model.pt'
+        path = os.getcwd() + '/best_model.pt'
         model = self.model
         checkpoint = torch.load(path, map_location="cpu")
         model.load_state_dict(checkpoint)
