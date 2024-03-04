@@ -7,6 +7,7 @@ import torch.nn as nn
 from copy import deepcopy
 from tqdm import trange
 import wandb
+import os
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Device: ", device)
@@ -139,7 +140,8 @@ class ProjectAgent:
     def save(self, path):
         torch.save(self.model.state_dict(), path)
 
-    def load(self, path = 'best_model.pt'):
+    def load(self):
+        path = os.getcwd() + 'best_model.pt'
         model = self.model
         checkpoint = torch.load(path, map_location="cpu")
         model.load_state_dict(checkpoint)
