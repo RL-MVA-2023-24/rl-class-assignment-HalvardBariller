@@ -6,7 +6,7 @@ import numpy as np
 import torch.nn as nn
 from copy import deepcopy
 from tqdm import trange
-import wandb
+# import wandb
 import os
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -297,9 +297,9 @@ class ProjectAgent:
                     else:
                         env = TimeLimit(env=HIVPatient(domain_randomization=False), max_episode_steps=200)
 
-                wandb.log({"Episode return": episode_cum_reward,
-                            "MC total reward": MC_tr,
-                            "MC discounted reward": MC_dr})
+                # wandb.log({"Episode return": episode_cum_reward,
+                #             "MC total reward": MC_tr,
+                #             "MC discounted reward": MC_dr})
                 
                 state, _ = env.reset()
                 episode_cum_reward = 0
@@ -339,8 +339,8 @@ if __name__ == "__main__":
                 hidden_dim = agent_config['DQN_hidden_dim'],
                 hidden_layers = agent_config['DQN_hidden_layers']).to(device)
     
-    run = wandb.init(project = "rl-class-assignment",
-                     config = agent_config)
+    # run = wandb.init(project = "rl-class-assignment",
+    #                  config = agent_config)
                      
                      
     
